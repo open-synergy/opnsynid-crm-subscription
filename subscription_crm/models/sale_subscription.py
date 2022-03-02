@@ -25,7 +25,11 @@ class SaleSubscription(models.Model):
         criteria = [("id", "=", 0)]
         if self.partner_id:
             criteria = [
-                ("partner_id", "=", self.partner_id.id),
+                (
+                    "partner_id.commercial_partner_id.id",
+                    "=",
+                    self.partner_id.commercial_partner_id.id,
+                ),
             ]
         return criteria
 
